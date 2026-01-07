@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mukku YagnaSri | Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ======================= THEME VARIABLES ======================= */
+    :root {
+      --bg-dark: #020617;
+      --bg-light: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --accent: #38bdf8; /* Cyan Blue */
+      --accent-glow: rgba(56, 189, 248, 0.6);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    /* ======================= GLOBAL RESET ======================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top center, #1e293b 0%, var(--bg-dark) 80%);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ======================= PARTICLE BACKGROUND ======================= */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle 5s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0; transform: translateY(0); }
+      50% { opacity: 0.8; }
+      100% { opacity: 0; transform: translateY(50px); }
+    }
+
+    /* ======================= NAVBAR ======================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(2, 6, 23, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-left span {
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Desktop Menu */
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right a {
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-right a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    /* HAMBURGER MENU (Hidden on Desktop) */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 101; /* Important: Keep it above the glass menu */
+    }
+
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: var(--text-main);
+      border-radius: 3px;
+    }
+
+    /* ======================= HERO SECTION ======================= */
+    .hero {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      min-height: 80vh;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-text-box h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-text-box h1 span {
+      color: var(--accent);
+      animation: blinkText 2s infinite alternate;
+    }
+    @keyframes blinkText { from { opacity: 0.7; } to { opacity: 1; text-shadow: 0 0 15px var(--accent); } }
+
+    .role {
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      max-width: 500px;
+    }
+
+    /* Buttons */
+    .btn-group { display: flex; gap: 1rem; }
+     
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #3b82f6);
+      color: #000;
+      border: none;
+      box-shadow: 0 0 15px var(--accent-glow);
+      animation: pulseBtn 2s infinite;
+    }
+    @keyframes pulseBtn { 0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); } 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); } }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-ghost:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* Hero Image Fixed */
+    .hero-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+    .photo-frame {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      background: linear-gradient(to bottom, #1e293b, #000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; 
+      box-shadow: 0 0 25px var(--accent), 0 0 60px var(--accent-glow); 
+      position: relative;
+    }
+     
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ======================= SECTIONS ======================= */
+    section {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+     
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      color: var(--text-main);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+     
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 10px auto 0;
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+     
+    .card:hover::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #fff; }
+    .card h4 { font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem; }
+    .meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; font-style: italic; }
+     
+    .card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+    .card li { margin-bottom: 0.3rem; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Skills Pills */
+    .skill-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-pill {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* ======================= FOOTER ======================= */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    /* ======================= RESPONSIVE (MOBILE) ======================= */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+       
+      .hero-text-box { order: 2; }
+      .hero-img-container { order: 1; }
+       
+      .desc { margin: 0 auto 2rem; }
+       
+      .btn-group { justify-content: center; }
+       
+      /* Mobile Menu Styles - Professional Glassmorphism */
+      .hamburger {
+        display: block; /* Show hamburger on mobile */
+      }
+
+      .nav-right {
+        position: fixed;
+        left: -100%; /* Hidden off-screen by default */
+        top: 0; /* No gap - starts at very top */
+        height: 100vh; /* Full screen height */
+        width: 300px; /* Professional side drawer width */
+        max-width: 80%;
+        
+        flex-direction: column;
+        justify-content: center; /* Center links vertically */
+        align-items: flex-start; /* Align text left */
+        padding: 2rem;
+        gap: 2rem;
+        
+        /* Glassmorphism Effect */
+        background-color: rgba(15, 23, 42, 0.85); /* Translucent dark blue */
+        backdrop-filter: blur(15px); /* The frosted glass blur */
+        -webkit-backdrop-filter: blur(15px); /* Safari support */
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+        
+        transition: 0.4s ease-in-out;
+        z-index: 100;
+      }
+
+      .nav-right.active {
+        left: 0; /* Slide in */
+      }
+
+      .nav-right a {
+        margin: 0;
+        display: block;
+        font-size: 1.5rem; /* Larger, professional font size */
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      /* Hamburger Animation */
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="particles"></div>
+
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <span>YAGNASRI • WEB DEVELOPER</span>
+      </div>
+      
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+
+      <div class="nav-right">
+        <a href="#about">About</a>
+        <a href="#experience">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero visible" id="about">
+      <div class="hero-text-box">
+        <div class="role">Web Developer</div>
+        <h1>Hi, I'm <span>Mukku YagnaSri</span></h1>
+        <p class="desc">
+          I am a professional <strong>Web Developer</strong> capable of building <strong>any type of website</strong>, 
+          from custom applications to responsive frontends. 
+          I also specialize in <strong>Shopify</strong>, handling store setup, product management, and customization.
+        </p>
+        <div class="btn-group">
+          <a href="#contact" class="btn btn-primary">Hire Me</a>
+          <a href="#projects" class="btn btn-ghost">View Work</a>
+        </div>
+      </div>
+
+      <div class="hero-img-container">
+        <div class="photo-frame">
+           <img src="pic.png" alt="Mukku YagnaSri">
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">Experience & Education</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Web Developer</h3>
+          <h4>Rotomaker VFX Pvt. Ltd.</h4>
+          <p class="meta">March 2024 – Present • Hyderabad (Remote/On-site)</p>
+          <ul>
+            <li>Develop and maintain company and internal web pages using HTML, CSS, JS, Bootstrap.</li>
+            <li>Create responsive layouts, landing pages, and UI components.</li>
+            <li>Optimize web performance and ensure cross-browser compatibility.</li>
+            <li>Utilize AI tools (ChatGPT, Gemini) for faster documentation and debugging.</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Education History</h3>
+          <div style="margin-bottom: 1rem;">
+            <p><strong>B.Tech</strong> • Pursuing</p>
+            <h5>CSE-AI (Computer Science and Engineering(Artificial Intelligence))</h5>
+            <p class="meta">ABR Engineering College, Kanigiri (2024–Present)</p>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <p><strong>Diploma : CAI-Computer Science and Engineering(Artificial Intelligence)</strong> • 76%</p>
+            <h5>CAI (Computer Science and Engineering(Artificial Intelligence))</h5>
+            <p class="meta">ISTS Women’s Engineering College, Rajahmundry(2020–2023)</p>
+          </div>
+          <div>
+            <p><strong>10th Class (SSC)</strong> • 10/10 GPA</p>
+            <p class="meta">Alpha English Medium High School (2020)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Web Technologies</h3>
+          <div class="skill-container">
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Bootstrap</span>
+            <span class="skill-pill">Responsive Design</span>
+            <span class="skill-pill">Full Site Build</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Shopify & E-Commerce</h3>
+          <div class="skill-container">
+            <span class="skill-pill">Store Building</span>
+            <span class="skill-pill">Product Management</span>
+            <span class="skill-pill">Collection Setup</span>
+            <span class="skill-pill">Page Creation</span>
+            <span class="skill-pill">Store Maintenance</span>
+            <span class="skill-pill">Theme Customization</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Tools & Platforms</h3>
+          <div class="skill-container">
+            <span class="skill-pill">Hostinger</span>
+            <span class="skill-pill">Domain & DNS</span>
+            <span class="skill-pill">VS Code</span>
+            <span class="skill-pill">GitHub</span>
+            <span class="skill-pill">Browser DevTools</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <ul>
+            <li>Quick learner & adaptable</li>
+            <li>Good communication & Teamwork</li>
+            <li>Problem-solving mindset</li>
+            <li>Languages: English, Telugu</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Personal Portfolio Website</h3>
+          <p class="meta">HTML • CSS • Bootstrap</p>
+          <p>A responsive portfolio website designed to showcase my skills, education, work experience, and certifications in a clean and modern layout.</p>
+        </div>
+        <div class="card">
+          <h3>Shopify Store Management</h3>
+          <p class="meta">Shopify • CMS • Product Management</p>
+          <p>Built and maintained fully functional e-commerce stores. Handled adding extensive product lists, organizing them into collections, creating policy and info pages, and ensuring a smooth customer navigation experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2 class="section-title">Certifications</h2>
+      <div class="grid-2">
+        <div class="card">
+          <ul>
+            <li><strong>Sololearn:</strong> HTML Course (2021)</li>
+            <li><strong>Sololearn:</strong> C Programming (2021)</li>
+            <li><strong>GUVI:</strong> ChatGPT for Everyone (Sep 2024)</li>
+            <li><strong>Nextwave:</strong> AI for Students: Build Your Own Generative AI Model (Jul 2024)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul>
+            <li><strong>GUVI:</strong> Generative AI (Apr 2025)</li>
+            <li><strong>SAWIT.AI:</strong> Learnathon (Sep 2024)</li>
+            <li><strong>GUVI:</strong> Python Programming (Sep 2023)</li>
+            <li><strong>Scaler:</strong> S.O.L.I.D Principles Masterclass (Oct 2024)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 1.1rem; margin-bottom: 1rem;">Let's discuss opportunities!</p>
+        <!--<div style="margin-bottom: 0.5rem;">📞 <strong>79974 28878</strong></div>-->
+        <div style="margin-bottom: 0.5rem;">✉️ <strong><a href="mailto:reddysri0306@gmail.com" style="color:var(--accent);">reddysri0306@gmail.com</a></strong></div>
+        <div>📍 <strong>Hyderabad</strong></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Mukku YagnaSri • Web Developer</p>
+  </footer>
+
+  <script>
+    // 1. Dynamic Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // 2. Hamburger Menu Logic
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-right");
+
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll(".nav-right a").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
+
+    // 3. Scroll Reveal Animation
+    const sections = document.querySelectorAll("section");
+     
+    function reveal() {
+      sections.forEach((section) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = section.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          section.classList.add("visible");
+        }
+      });
+    }
+     
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    // 4. Simple Star Particle Generator
+    function createStars() {
+      const container = document.getElementById('particles');
+      const starCount = 50; 
+
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const duration = 3 + Math.random() * 5;
+        const delay = Math.random() * 5;
+
+        star.style.left = x + '%';
+        star.style.top = y + '%';
+        star.style.animationDuration = duration + 's';
+        star.style.animationDelay = delay + 's';
+
+        container.appendChild(star);
+      }
+    }
+    createStars();
+  </script>
+
+</body>
+</html>
