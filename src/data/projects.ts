@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
       "Infrastructure: Containerized microservices with secure API gateway and automated CI/CD pipeline"
     ],
     liveDemoUrl: "https://knowverse.example.com",
-    githubUrl: "https://github.com/yagnasri/knowverse"
+    githubUrl: "https://github.com/yagnasrireddymukku/knowverse"
   },
   {
     id: "mythoverse",
@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
       "Post-Production: Digital color grading, high-resolution upscaling, and spatial audio alignment"
     ],
     liveDemoUrl: "https://mythoverse.example.com",
-    githubUrl: "https://github.com/yagnasri/mythoverse"
+    githubUrl: "https://github.com/yagnasrireddymukku/mythoverse"
   },
   {
     id: "shopify-ecommerce-platform",
@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
       "Optimization: CDN asset caching, lazy image rendering, responsive SVGs"
     ],
     liveDemoUrl: "https://example-store.shopify.com",
-    githubUrl: "https://github.com/yagnasri/shopify-suite"
+    githubUrl: "https://github.com/yagnasrireddymukku/shopify-suite"
   },
   {
     id: "cloud-portal-deployment",
@@ -163,6 +163,6 @@ export const PROJECTS: Project[] = [
       "Stack: Modern responsive web front with structured API backends"
     ],
     liveDemoUrl: "https://portal.example.com",
-    githubUrl: "https://github.com/yagnasri/cloud-portal"
+    githubUrl: "https://github.com/yagnasrireddymukku/cloud-portal"
   }
 ];

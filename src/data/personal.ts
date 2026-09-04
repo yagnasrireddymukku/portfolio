@@ -7,6 +7,8 @@ export const PERSONAL_INFO = {
   supportingIdentity: "Building intelligent products through AI, software, and creativity.",
   cvPath: "/YagnaSri-Reddy-Mukku-CV.pdf",
   email: "reddysri0306@gmail.com",
+  githubUrl: "https://github.com/yagnasrireddymukku",
+  livePortfolioUrl: "https://yagnasrireddymukku.github.io/portfolio/",
   profilePhoto: "/assets/profile/profile-photo.png",
   profileAvatar: "/assets/profile/profile-avatar.svg",
   location: "India",
