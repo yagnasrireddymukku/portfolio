@@ -6,6 +6,7 @@ import type { Project } from '../../types';
 import { Badge } from '../common/Badge';
 import { GithubIcon } from '../common/Icons';
 import { getTechIcon } from '../common/TechLogos';
+import { Card3D } from '../3d/Card3D';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,14 +15,14 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45 }}
-      whileHover={{ y: -6, scale: 1.01 }}
-      className="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border hover:border-brand-500/50 dark:hover:border-cyan-500/40 shadow-sm hover:shadow-xl hover:shadow-cyan-500/5 transition-all duration-300 overflow-hidden text-left"
-    >
+    <Card3D maxRotation={8} className="rounded-3xl h-full">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+        className="group relative flex flex-col justify-between h-full rounded-3xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border hover:border-brand-500/50 dark:hover:border-cyan-500/40 shadow-sm transition-all duration-300 overflow-hidden text-left [transform-style:preserve-3d]"
+      >
       {/* Decorative gradient banner with Tech Icon */}
       <div className={`h-36 w-full bg-gradient-to-r ${project.bannerGradient} relative flex items-center justify-between p-6 border-b border-slate-200/60 dark:border-dark-border/60 overflow-hidden`}>
         <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors pointer-events-none" />
@@ -116,5 +117,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
     </motion.div>
+  </Card3D>
   );
 };

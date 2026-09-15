@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Brain, Code, ShoppingBag, Server, CheckCircle2, Sparkles } from 'lucide-react';
 import type { SkillCategory } from '../../types';
 import { getTechIcon } from '../common/TechLogos';
+import { Card3D } from '../3d/Card3D';
 
 interface SkillCategoryCardProps {
   category: SkillCategory;
@@ -23,13 +24,14 @@ export const SkillCategoryCard: React.FC<SkillCategoryCardProps> = ({ category }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45 }}
-      className="rounded-3xl bg-white/90 dark:bg-dark-card/90 border border-slate-200 dark:border-dark-border p-6 sm:p-8 shadow-md hover:border-brand-500/40 dark:hover:border-cyan-500/40 hover:shadow-xl transition-all duration-300 backdrop-blur-md flex flex-col justify-between"
-    >
+    <Card3D maxRotation={5} className="h-full rounded-3xl">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+        className="rounded-3xl bg-white/90 dark:bg-dark-card/90 border border-slate-200 dark:border-dark-border p-6 sm:p-8 shadow-md hover:border-brand-500/40 dark:hover:border-cyan-500/40 hover:shadow-xl transition-all duration-300 backdrop-blur-md flex flex-col justify-between h-full [transform-style:preserve-3d]"
+      >
       <div>
         {/* Category Header */}
         <div className="flex items-center gap-4 mb-4">
@@ -99,5 +101,6 @@ export const SkillCategoryCard: React.FC<SkillCategoryCardProps> = ({ category }
         </div>
       </div>
     </motion.div>
+  </Card3D>
   );
 };

@@ -5,6 +5,8 @@ import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 import { GithubIcon, LinkedinIcon, GuviIcon } from '../common/Icons';
 import { PythonLogo, ShopifyLogo, OpenAILogo } from '../common/TechLogos';
+import { HeroCanvas3D } from '../3d/HeroCanvas3D';
+import { Card3D } from '../3d/Card3D';
 import { PERSONAL_INFO } from '../../data/personal';
 import { SOCIAL_LINKS } from '../../data/socialLinks';
 
@@ -19,6 +21,7 @@ const ROTATING_SPECIALIZATIONS = [
 export const HeroSection: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [imgSrc, setImgSrc] = useState<string>(PERSONAL_INFO.profilePhoto || '/assets/profile/profile-avatar.svg');
+  const [activeHeroView, setActiveHeroView] = useState<'3d' | 'photo'>('3d');
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Rotating specialization
@@ -234,6 +237,7 @@ export const HeroSection: React.FC = () => {
           </motion.div>
 
           {/* Right Column: Interactive Digital Headquarters Badge & Portrait */}
+          {/* Right Column: Interactive 3D Digital Headquarters */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -244,69 +248,99 @@ export const HeroSection: React.FC = () => {
               {/* Outer Animated Glow Ring */}
               <div className="absolute -inset-1.5 bg-gradient-to-r from-brand-600 via-cyan-500 to-purple-600 rounded-3xl blur-xl opacity-35 dark:opacity-45 animate-pulse-subtle" />
 
-              {/* Main Card */}
-              <div className="relative rounded-3xl bg-white/90 dark:bg-dark-card/95 border border-slate-200 dark:border-dark-border p-6 sm:p-7 shadow-2xl backdrop-blur-xl overflow-hidden">
-                {/* Header telemetry */}
-                <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-dark-border/80 mb-5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
-                      rotomaker.ai // production
+              {/* 3D Perspective Card Container */}
+              <Card3D maxRotation={7} className="rounded-3xl">
+                <div className="relative rounded-3xl bg-white/90 dark:bg-dark-card/95 border border-slate-200 dark:border-dark-border p-5 sm:p-6 shadow-2xl backdrop-blur-xl overflow-hidden [transform-style:preserve-3d]">
+                  {/* Header telemetry with 3D Mode Switcher */}
+                  <div className="flex items-center justify-between pb-3.5 border-b border-slate-100 dark:border-dark-border/80 mb-4 [transform:translateZ(20px)]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                        rotomaker.ai // production
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1 bg-slate-100 dark:bg-dark-surface p-1 rounded-xl border border-slate-200 dark:border-dark-border text-[11px] font-mono">
+                      <button
+                        type="button"
+                        onClick={() => setActiveHeroView('3d')}
+                        className={`px-2.5 py-0.5 rounded-lg transition-all ${
+                          activeHeroView === '3d'
+                            ? 'bg-cyan-500 text-slate-950 font-bold shadow-xs'
+                            : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        3D Core
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveHeroView('photo')}
+                        className={`px-2.5 py-0.5 rounded-lg transition-all ${
+                          activeHeroView === 'photo'
+                            ? 'bg-cyan-500 text-slate-950 font-bold shadow-xs'
+                            : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        Profile ID
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 3D Interactive View vs Photo View */}
+                  <div className="relative mb-4 [transform:translateZ(30px)]">
+                    {activeHeroView === '3d' ? (
+                      <div className="relative w-full h-52 sm:h-60 rounded-2xl overflow-hidden border border-cyan-500/30 bg-slate-950/70 shadow-inner">
+                        <HeroCanvas3D className="w-full h-full min-h-0" />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-52 sm:h-60 rounded-2xl overflow-hidden border-2 border-brand-500/40 dark:border-cyan-400/40 shadow-xl bg-slate-900 flex items-center justify-center">
+                        <img
+                          src={imgSrc}
+                          onError={() => setImgSrc('/assets/profile/profile-avatar.svg')}
+                          alt={PERSONAL_INFO.name}
+                          className="w-full h-full object-cover"
+                        />
+
+                        {/* Cybernetic Corner Accents */}
+                        <span className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400" />
+                        <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400" />
+                        <span className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400" />
+                        <span className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Technical Node Matrix */}
+                  <div className="grid grid-cols-3 gap-2 text-center mb-3.5 [transform:translateZ(15px)]">
+                    <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-dark-surface border border-slate-200/80 dark:border-dark-border hover:border-cyan-400/40 transition-all card-hover-effect">
+                      <OpenAILogo className="w-4 h-4 mx-auto mb-1 text-cyan-400" />
+                      <p className="text-[9px] font-mono text-slate-400 uppercase">Production</p>
+                      <p className="text-xs font-bold text-slate-800 dark:text-slate-200">GenAI / ML</p>
+                    </div>
+                    <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-dark-surface border border-slate-200/80 dark:border-dark-border hover:border-blue-400/40 transition-all card-hover-effect">
+                      <PythonLogo className="w-4 h-4 mx-auto mb-1" />
+                      <p className="text-[9px] font-mono text-slate-400 uppercase">Full-Stack</p>
+                      <p className="text-xs font-bold text-slate-800 dark:text-slate-200">Python / React</p>
+                    </div>
+                    <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-dark-surface border border-slate-200/80 dark:border-dark-border hover:border-emerald-400/40 transition-all card-hover-effect">
+                      <ShopifyLogo className="w-4 h-4 mx-auto mb-1" />
+                      <p className="text-[9px] font-mono text-slate-400 uppercase">Commerce</p>
+                      <p className="text-xs font-bold text-slate-800 dark:text-slate-200">Shopify / DNS</p>
+                    </div>
+                  </div>
+
+                  {/* Key Status Bar */}
+                  <div className="p-2.5 rounded-xl bg-brand-50/70 dark:bg-dark-surface/60 border border-brand-200/60 dark:border-dark-border flex items-center justify-between text-xs [transform:translateZ(10px)]">
+                    <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                      <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+                      <span className="text-[11px]">Degree Track:</span>
+                    </div>
+                    <span className="font-mono font-semibold text-brand-600 dark:text-cyan-300 text-[11px]">
+                      B.Tech CSE (AI)
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
-                    Active Role
-                  </span>
                 </div>
-
-                {/* Profile Photo Display with Fallback */}
-                <div className="relative mb-5 flex justify-center">
-                  <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-brand-500/40 dark:border-cyan-400/40 shadow-xl bg-slate-900 flex items-center justify-center">
-                    <img
-                      src={imgSrc}
-                      onError={() => setImgSrc('/assets/profile/profile-avatar.svg')}
-                      alt={PERSONAL_INFO.name}
-                      className="w-full h-full object-cover"
-                    />
-
-                    {/* Cybernetic Corner Accents */}
-                    <span className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400" />
-                    <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400" />
-                    <span className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400" />
-                    <span className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400" />
-                  </div>
-                </div>
-
-                {/* Technical Node Matrix */}
-                <div className="grid grid-cols-3 gap-2.5 text-center mb-4">
-                  <div className="p-3 rounded-2xl bg-slate-50 dark:bg-dark-surface border border-slate-200/80 dark:border-dark-border hover:border-cyan-400/40 transition-all card-hover-effect">
-                    <OpenAILogo className="w-5 h-5 mx-auto mb-1.5 text-cyan-400" />
-                    <p className="text-[10px] font-mono text-slate-400 uppercase">Production</p>
-                    <p className="text-xs font-bold text-slate-800 dark:text-slate-200">GenAI / ML</p>
-                  </div>
-                  <div className="p-3 rounded-2xl bg-slate-50 dark:bg-dark-surface border border-slate-200/80 dark:border-dark-border hover:border-blue-400/40 transition-all card-hover-effect">
-                    <PythonLogo className="w-5 h-5 mx-auto mb-1.5" />
-                    <p className="text-[10px] font-mono text-slate-400 uppercase">Full-Stack</p>
-                    <p className="text-xs font-bold text-slate-800 dark:text-slate-200">Python / React</p>
-                  </div>
-                  <div className="p-3 rounded-2xl bg-slate-50 dark:bg-dark-surface border border-slate-200/80 dark:border-dark-border hover:border-emerald-400/40 transition-all card-hover-effect">
-                    <ShopifyLogo className="w-5 h-5 mx-auto mb-1.5" />
-                    <p className="text-[10px] font-mono text-slate-400 uppercase">Commerce</p>
-                    <p className="text-xs font-bold text-slate-800 dark:text-slate-200">Shopify / DNS</p>
-                  </div>
-                </div>
-
-                {/* Key Status Bar */}
-                <div className="p-2.5 rounded-xl bg-brand-50/70 dark:bg-dark-surface/60 border border-brand-200/60 dark:border-dark-border flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                    <Cpu className="w-4 h-4 text-cyan-400" />
-                    <span>Degree Track:</span>
-                  </div>
-                  <span className="font-mono font-semibold text-brand-600 dark:text-cyan-300">
-                    B.Tech CSE (AI)
-                  </span>
-                </div>
-              </div>
+              </Card3D>
             </div>
           </motion.div>
         </div>

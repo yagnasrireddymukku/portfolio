@@ -27,6 +27,7 @@ import { PERSONAL_INFO } from '../data/personal';
 import { SOCIAL_LINKS, CONTACT_CONFIG } from '../data/socialLinks';
 import { fadeUp, fadeIn, staggerContainer, staggerItem } from '../utils/animations';
 import { OpenAILogo, ReactLogo, HostingerLogo, ShopifyLogo } from '../components/common/TechLogos';
+import { PillarsHologram3D } from '../components/3d/PillarsHologram3D';
 
 export const AboutPage: React.FC = () => {
   useDocumentTitle(
@@ -385,6 +386,16 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
         </div>
+      </motion.section>
+
+      {/* Interactive 3D Multi-Disciplinary Architecture Hologram */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={fadeUp}
+      >
+        <PillarsHologram3D />
       </motion.section>
 
       {/* Section 3: Core Competencies (What I Do) */}

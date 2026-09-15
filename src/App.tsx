@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { TechBackground } from './components/common/TechBackground';
+import { ThreeBackground3D } from './components/3d/ThreeBackground3D';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { BackToTop } from './components/common/BackToTop';
@@ -141,6 +142,7 @@ export const App: React.FC = () => {
       <Router>
         <ScrollToTopOnNavigate />
         <div className="relative min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+          <ThreeBackground3D />
           <TechBackground />
           <Navbar />
 

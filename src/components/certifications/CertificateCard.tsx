@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import type { CertificateItem } from '../../types';
 import { Badge } from '../common/Badge';
 import { getTechIcon } from '../common/TechLogos';
+import { Card3D } from '../3d/Card3D';
 
 interface CertificateCardProps {
   certificate: CertificateItem;
@@ -12,14 +13,14 @@ interface CertificateCardProps {
 
 export const CertificateCard: React.FC<CertificateCardProps> = ({ certificate, onView }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.35 }}
-      whileHover={{ y: -4, scale: 1.008 }}
-      className="rounded-3xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border p-6 sm:p-7 shadow-sm hover:border-brand-500/40 dark:hover:border-cyan-500/40 hover:shadow-xl hover:shadow-cyan-500/5 transition-all flex flex-col justify-between group text-left"
-    >
+    <Card3D maxRotation={6} className="h-full rounded-3xl">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.35 }}
+        className="rounded-3xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border p-6 sm:p-7 shadow-sm hover:border-brand-500/40 dark:hover:border-cyan-500/40 hover:shadow-xl hover:shadow-cyan-500/5 transition-all flex flex-col justify-between group text-left h-full [transform-style:preserve-3d]"
+      >
       <div className="space-y-4">
         {/* Top Header: Issuer Badge, Date & Credential Status */}
         <div className="flex flex-wrap items-center justify-between gap-2.5 pb-3.5 border-b border-slate-100 dark:border-dark-border/80">
@@ -124,5 +125,6 @@ export const CertificateCard: React.FC<CertificateCardProps> = ({ certificate, o
         )}
       </div>
     </motion.div>
+  </Card3D>
   );
 };
