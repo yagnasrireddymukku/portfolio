@@ -44,9 +44,9 @@ export const ThreeBackground3D: React.FC = () => {
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const color1 = new THREE.Color(0x38d9ff); // Cyan
-    const color2 = new THREE.Color(0x4f8cff); // Blue
-    const color3 = new THREE.Color(0x8b5cf6); // Purple
+    const color1 = new THREE.Color(0x12b3a6); // Viridian Teal
+    const color2 = new THREE.Color(0x3660de); // Sapphire Ink
+    const color3 = new THREE.Color(0xc2622e); // Molten Copper
 
     for (let i = 0; i < particleCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 60;
@@ -75,7 +75,7 @@ export const ThreeBackground3D: React.FC = () => {
     scene.add(pointCloud);
 
     // 2. Subtle 3D Wireframe Cyber Grid on the Floor
-    const gridHelper = new THREE.GridHelper(80, 40, 0x38d9ff, 0x1e293b);
+    const gridHelper = new THREE.GridHelper(80, 40, 0x12b3a6, 0x1e293b);
     gridHelper.position.y = -15;
     if (gridHelper.material instanceof THREE.Material) {
       gridHelper.material.transparent = true;

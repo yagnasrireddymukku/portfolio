@@ -52,7 +52,7 @@ export const HeroCanvas3D: React.FC<{ className?: string }> = ({ className = '' 
     const nucleusGeometry = new THREE.SphereGeometry(1.0, 32, 32);
     const nucleusMaterial = new THREE.MeshStandardMaterial({
       color: 0x070b14,
-      emissive: 0x38d9ff,
+      emissive: 0x12b3a6,
       emissiveIntensity: 0.6,
       roughness: 0.2,
       metalness: 0.8,
@@ -65,7 +65,7 @@ export const HeroCanvas3D: React.FC<{ className?: string }> = ({ className = '' 
     const icosaGeometry = new THREE.IcosahedronGeometry(1.45, 2);
     const icosaWireframe = new THREE.WireframeGeometry(icosaGeometry);
     const icosaLineMaterial = new THREE.LineBasicMaterial({
-      color: 0x4f8cff,
+      color: 0x3660de,
       transparent: true,
       opacity: 0.65
     });
@@ -75,7 +75,7 @@ export const HeroCanvas3D: React.FC<{ className?: string }> = ({ className = '' 
     // 3. Floating Node Vertices on the Icosahedron
     const vertexCount = icosaGeometry.attributes.position.count;
     const nodeGeometry = new THREE.SphereGeometry(0.035, 8, 8);
-    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x38d9ff });
+    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x12b3a6 });
     const nodesInstanced = new THREE.InstancedMesh(nodeGeometry, nodeMaterial, vertexCount);
     const dummy = new THREE.Object3D();
     const posAttribute = icosaGeometry.attributes.position;
@@ -94,9 +94,9 @@ export const HeroCanvas3D: React.FC<{ className?: string }> = ({ className = '' 
     // 4. Concentric Cyber Orbital Rings
     const rings: THREE.Mesh[] = [];
     const ringConfigs = [
-      { radius: 2.1, tube: 0.018, color: 0x38d9ff, rotX: Math.PI / 4, rotY: 0 },
-      { radius: 2.55, tube: 0.015, color: 0x8b5cf6, rotX: -Math.PI / 3, rotY: Math.PI / 6 },
-      { radius: 2.95, tube: 0.012, color: 0x4f8cff, rotX: Math.PI / 6, rotY: -Math.PI / 4 }
+      { radius: 2.1, tube: 0.018, color: 0x12b3a6, rotX: Math.PI / 4, rotY: 0 },
+      { radius: 2.55, tube: 0.015, color: 0xc2622e, rotX: -Math.PI / 3, rotY: Math.PI / 6 },
+      { radius: 2.95, tube: 0.012, color: 0x3660de, rotX: Math.PI / 6, rotY: -Math.PI / 4 }
     ];
 
     ringConfigs.forEach((cfg) => {
@@ -133,7 +133,7 @@ export const HeroCanvas3D: React.FC<{ className?: string }> = ({ className = '' 
     const particlesGeom = new THREE.BufferGeometry();
     particlesGeom.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     const particlesMat = new THREE.PointsMaterial({
-      color: 0x38d9ff,
+      color: 0x12b3a6,
       size: 0.035,
       transparent: true,
       opacity: 0.75,
@@ -146,11 +146,11 @@ export const HeroCanvas3D: React.FC<{ className?: string }> = ({ className = '' 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
-    const pointLight1 = new THREE.PointLight(0x38d9ff, 4, 10);
+    const pointLight1 = new THREE.PointLight(0x12b3a6, 4, 10);
     pointLight1.position.set(3, 3, 3);
     scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0x8b5cf6, 3, 10);
+    const pointLight2 = new THREE.PointLight(0xc2622e, 3, 10);
     pointLight2.position.set(-3, -2, -2);
     scene.add(pointLight2);
 

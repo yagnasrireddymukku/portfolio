@@ -75,7 +75,7 @@ export const HeroSection: React.FC = () => {
 
           if (dist < 110) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(79, 140, 255, ${0.15 * (1 - dist / 110)})`;
+            ctx.strokeStyle = `rgba(54, 96, 222, ${0.15 * (1 - dist / 110)})`;
             ctx.lineWidth = 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -97,7 +97,7 @@ export const HeroSection: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(56, 217, 255, 0.45)';
+        ctx.fillStyle = 'rgba(18, 179, 166, 0.45)';
         ctx.fill();
       }
 

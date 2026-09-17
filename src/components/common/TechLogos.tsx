@@ -187,9 +187,9 @@ export const CSS3Logo: React.FC<TechIconProps> = ({ className = 'w-5 h-5', ...pr
 // 15. Rotomaker Emblem
 export const RotomakerEmblem: React.FC<TechIconProps> = ({ className = 'w-5 h-5', ...props }) => (
   <svg viewBox="0 0 100 100" className={className} fill="none" {...props}>
-    <circle cx="50" cy="50" r="46" fill="#0B1020" stroke="#00D8FF" strokeWidth="4" />
-    <path d="M30 70V30h22c9 0 16 5 16 13 0 6-4 11-10 12l12 15H56L46 56h-4v14H30zm12-24h10c4 0 7-2 7-5s-3-5-7-5H42v10z" fill="#00D8FF" />
-    <circle cx="70" cy="28" r="4" fill="#38D9FF" />
+    <circle cx="50" cy="50" r="46" fill="#0B1020" stroke="#12B3A6" strokeWidth="4" />
+    <path d="M30 70V30h22c9 0 16 5 16 13 0 6-4 11-10 12l12 15H56L46 56h-4v14H30zm12-24h10c4 0 7-2 7-5s-3-5-7-5H42v10z" fill="#12B3A6" />
+    <circle cx="70" cy="28" r="4" fill="#C2622E" />
   </svg>
 );
 

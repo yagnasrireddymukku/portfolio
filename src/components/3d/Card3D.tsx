@@ -12,7 +12,7 @@ interface Card3DProps {
 export const Card3D: React.FC<Card3DProps> = ({
   children,
   className = '',
-  glareColor = 'rgba(56, 217, 255, 0.14)',
+  glareColor = 'rgba(18, 179, 166, 0.16)',
   maxRotation = 10,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);

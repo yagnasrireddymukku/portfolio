@@ -12,14 +12,14 @@
     --surface-primary: #FFFFFF;
     --surface-secondary: #F8FAFC;
     --glass-surface: rgba(255, 255, 255, 0.85);
-    --accent-blue: #2563EB;
-    --accent-cyan: #0284C7;
-    --accent-purple: #7C3AED;
+    --accent-blue: #2848B8;
+    --accent-cyan: #0B7269;
+    --accent-purple: #A14D22;
     --text-primary: #0F172A;
     --text-secondary: #475569;
     --border-color: rgba(15, 23, 42, 0.1);
   }
-  
+
   .dark {
     color-scheme: dark;
     --bg-primary: #070B14;
@@ -27,9 +27,9 @@
     --surface-primary: #111827;
     --surface-secondary: #151B2D;
     --glass-surface: rgba(255, 255, 255, 0.04);
-    --accent-blue: #4F8CFF;
-    --accent-cyan: #38D9FF;
-    --accent-purple: #8B5CF6;
+    --accent-blue: #5480F2;
+    --accent-cyan: #35C9BC;
+    --accent-purple: #E0824A;
     --text-primary: #F8FAFC;
     --text-secondary: #94A3B8;
     --border-color: rgba(148, 163, 184, 0.15);
@@ -89,15 +89,15 @@
 /* Subtle tech grid background pattern */
 .bg-tech-grid {
   background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(79, 140, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(79, 140, 255, 0.04) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(54, 96, 222, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(54, 96, 222, 0.045) 1px, transparent 1px);
 }
 
 .dark .bg-tech-grid {
-  background-image: 
-    linear-gradient(to right, rgba(56, 217, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 217, 255, 0.035) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(18, 179, 166, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 179, 166, 0.035) 1px, transparent 1px);
 }
 
 /* Animated Shimmer Skeleton */
@@ -123,11 +123,15 @@
 
 /* Glow effects */
 .glow-primary {
-  box-shadow: 0 0 25px -5px rgba(79, 140, 255, 0.3);
+  box-shadow: 0 0 25px -5px rgba(54, 96, 222, 0.35);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 25px -5px rgba(56, 217, 255, 0.3);
+  box-shadow: 0 0 25px -5px rgba(18, 179, 166, 0.35);
+}
+
+.glow-copper {
+  box-shadow: 0 0 25px -5px rgba(194, 98, 46, 0.35);
 }
 
 /* Standard Responsive Container with balanced gutters */

@@ -16,24 +16,24 @@ const DISCIPLINES: DisciplineData[] = [
     id: 'ai',
     name: 'Artificial Intelligence',
     role: 'Generative AI, LLM Pipelines, Vision & Neural Architectures',
-    color: '#38D9FF',
-    hex: 0x38d9ff,
+    color: '#12B3A6',
+    hex: 0x12b3a6,
     icon: <Brain className="w-4 h-4 text-cyan-400" />
   },
   {
     id: 'fullstack',
     name: 'Full-Stack Development',
     role: 'Python, FastAPI, React 19, TypeScript & Microservices',
-    color: '#4F8CFF',
-    hex: 0x4f8cff,
+    color: '#3660DE',
+    hex: 0x3660de,
     icon: <Code className="w-4 h-4 text-blue-400" />
   },
   {
     id: 'commerce',
     name: 'Digital Platforms & Shopify',
     role: 'Liquid Storefronts, Hostinger Cloud & High-Conversion Funnels',
-    color: '#8B5CF6',
-    hex: 0x8b5cf6,
+    color: '#C2622E',
+    hex: 0xc2622e,
     icon: <ShoppingBag className="w-4 h-4 text-purple-400" />
   },
   {
@@ -132,7 +132,7 @@ export const PillarsHologram3D: React.FC<{ className?: string }> = ({ className 
     // 4. Orbit Halo Ring
     const haloGeom = new THREE.TorusGeometry(satelliteRadius, 0.012, 16, 80);
     const haloMat = new THREE.MeshBasicMaterial({
-      color: 0x38d9ff,
+      color: 0x12b3a6,
       transparent: true,
       opacity: 0.35
     });
@@ -144,7 +144,7 @@ export const PillarsHologram3D: React.FC<{ className?: string }> = ({ className 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x38d9ff, 3, 10);
+    const pointLight = new THREE.PointLight(0x12b3a6, 3, 10);
     pointLight.position.set(2, 3, 4);
     scene.add(pointLight);
 
