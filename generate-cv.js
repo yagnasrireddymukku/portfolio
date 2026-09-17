@@ -50,20 +50,34 @@ function generateExecutiveCV() {
   const crestX = startX;
   const crestY = headerStartY;
 
-  // Executive Monogram Crest
+  // Executive Profile Photo Crest (falls back to monogram initials if the photo is missing)
+  const crestCx = crestX + crestSize / 2;
+  const crestCy = crestY + crestSize / 2;
+  const photoPath = path.resolve('public/assets/profile/profile-photo.png');
+
   doc.save();
-  // Outer circle background
-  doc.circle(crestX + crestSize / 2, crestY + crestSize / 2, crestSize / 2).fill('#0b1020');
-  // Cyan outer ring
-  doc.circle(crestX + crestSize / 2, crestY + crestSize / 2, crestSize / 2 - 1.5).strokeColor(CYAN).lineWidth(1.4).stroke();
-  // Inner blue ring
-  doc.circle(crestX + crestSize / 2, crestY + crestSize / 2, crestSize / 2 - 4.5).strokeColor(ACCENT).lineWidth(0.8).stroke();
-  // Centered Monogram Initials
-  doc.font('Helvetica-Bold').fontSize(17).fillColor('#ffffff').text('YM', crestX, crestY + 17, {
-    width: crestSize,
-    align: 'center'
-  });
+  if (fs.existsSync(photoPath)) {
+    doc.circle(crestCx, crestCy, crestSize / 2 - 2).clip();
+    doc.image(photoPath, crestX, crestY, {
+      width: crestSize,
+      height: crestSize,
+      cover: [crestSize, crestSize],
+      align: 'center',
+      valign: 'top'
+    });
+  } else {
+    doc.circle(crestCx, crestCy, crestSize / 2).fill('#0b1020');
+    doc.font('Helvetica-Bold').fontSize(17).fillColor('#ffffff').text('YM', crestX, crestY + 17, {
+      width: crestSize,
+      align: 'center'
+    });
+  }
   doc.restore();
+
+  // Cyan outer ring
+  doc.circle(crestCx, crestCy, crestSize / 2 - 1.5).strokeColor(CYAN).lineWidth(1.4).stroke();
+  // Inner blue ring
+  doc.circle(crestCx, crestCy, crestSize / 2 - 4.5).strokeColor(ACCENT).lineWidth(0.8).stroke();
 
   // Name & Title next to crest
   const textStartX = crestX + crestSize + 14;

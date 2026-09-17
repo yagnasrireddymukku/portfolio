@@ -107,7 +107,7 @@ export const AboutPage: React.FC = () => {
                       (e.target as HTMLImageElement).src = '/assets/profile/profile-avatar.svg';
                     }}
                     alt={PERSONAL_INFO.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                   <div className="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-dark-card" title="Active in AI Production" />
                 </div>

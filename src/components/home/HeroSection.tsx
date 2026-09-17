@@ -20,7 +20,7 @@ const ROTATING_SPECIALIZATIONS = [
 
 export const HeroSection: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [imgSrc, setImgSrc] = useState<string>(PERSONAL_INFO.profilePhoto || '/assets/profile/profile-avatar.svg');
+  const [imgSrc, setImgSrc] = useState<string>(PERSONAL_INFO.profileAvatarPhoto || PERSONAL_INFO.profilePhoto || '/assets/profile/profile-avatar.svg');
   const [activeHeroView, setActiveHeroView] = useState<'3d' | 'photo'>('3d');
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -293,19 +293,16 @@ export const HeroSection: React.FC = () => {
                         <HeroCanvas3D className="w-full h-full min-h-0" />
                       </div>
                     ) : (
-                      <div className="relative w-full h-52 sm:h-60 rounded-2xl overflow-hidden border-2 border-brand-500/40 dark:border-cyan-400/40 shadow-xl bg-slate-900 flex items-center justify-center">
-                        <img
-                          src={imgSrc}
-                          onError={() => setImgSrc('/assets/profile/profile-avatar.svg')}
-                          alt={PERSONAL_INFO.name}
-                          className="w-full h-full object-cover"
-                        />
-
-                        {/* Cybernetic Corner Accents */}
-                        <span className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400" />
-                        <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400" />
-                        <span className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400" />
-                        <span className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400" />
+                      <div className="relative h-52 sm:h-60 rounded-2xl overflow-hidden border border-cyan-500/20 bg-slate-950/40 flex items-center justify-center">
+                        <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-brand-500/40 dark:border-cyan-400/40 shadow-xl shadow-cyan-500/10">
+                          <img
+                            src={imgSrc}
+                            onError={() => setImgSrc('/assets/profile/profile-avatar.svg')}
+                            alt={PERSONAL_INFO.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <span className="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-dark-card" title="Active in AI Production" />
+                        </div>
                       </div>
                     )}
                   </div>

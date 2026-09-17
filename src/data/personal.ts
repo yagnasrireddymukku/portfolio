@@ -10,6 +10,7 @@ export const PERSONAL_INFO = {
   githubUrl: "https://github.com/yagnasrireddymukku",
   livePortfolioUrl: "https://yagnasrireddymukku.github.io/portfolio/",
   profilePhoto: "/assets/profile/profile-photo.png",
+  profileAvatarPhoto: "/assets/profile/profile-avatar-photo.jpg",
   profileAvatar: "/assets/profile/profile-avatar.svg",
   location: "India",
   heroRotatingTitles: [
