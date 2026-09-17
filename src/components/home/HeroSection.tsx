@@ -20,7 +20,7 @@ const ROTATING_SPECIALIZATIONS = [
 
 export const HeroSection: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [imgSrc, setImgSrc] = useState<string>(PERSONAL_INFO.profileAvatarPhoto || PERSONAL_INFO.profilePhoto || '/assets/profile/profile-avatar.svg');
+  const [imgSrc, setImgSrc] = useState<string>(PERSONAL_INFO.profileAvatarPhoto || PERSONAL_INFO.profilePhoto || 'assets/profile/profile-avatar.svg');
   const [activeHeroView, setActiveHeroView] = useState<'3d' | 'photo'>('3d');
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -297,7 +297,7 @@ export const HeroSection: React.FC = () => {
                         <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-brand-500/40 dark:border-cyan-400/40 shadow-xl shadow-cyan-500/10">
                           <img
                             src={imgSrc}
-                            onError={() => setImgSrc('/assets/profile/profile-avatar.svg')}
+                            onError={() => setImgSrc('assets/profile/profile-avatar.svg')}
                             alt={PERSONAL_INFO.name}
                             className="w-full h-full object-cover"
                           />

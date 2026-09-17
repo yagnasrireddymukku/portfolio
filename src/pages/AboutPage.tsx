@@ -102,9 +102,9 @@ export const AboutPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-brand-500/30 dark:border-cyan-400/40 shadow-md bg-slate-900 shrink-0">
                   <img
-                    src={PERSONAL_INFO.profilePhoto || '/assets/profile/profile-avatar.svg'}
+                    src={PERSONAL_INFO.profilePhoto || 'assets/profile/profile-avatar.svg'}
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/assets/profile/profile-avatar.svg';
+                      (e.target as HTMLImageElement).src = 'assets/profile/profile-avatar.svg';
                     }}
                     alt={PERSONAL_INFO.name}
                     className="w-full h-full object-cover object-top"
