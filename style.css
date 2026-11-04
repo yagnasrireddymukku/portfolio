@@ -526,3 +526,13 @@ main section:not(.hero)>.wrap{will-change:transform;transform-origin:50% 40%}
   .logo{font-size:1.1rem}
 }
 @media (min-width:901px) and (max-width:1020px){.logo{font-size:0}.logo b{font-size:.95rem}}
+
+/* scrollbars: hidden in the chat, themed elsewhere */
+.ai-log,.rail,.filters,.ai-chips{scrollbar-width:none;-ms-overflow-style:none}
+.ai-log::-webkit-scrollbar,.rail::-webkit-scrollbar,.filters::-webkit-scrollbar,.ai-chips::-webkit-scrollbar{display:none;width:0;height:0}
+:root{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+html{scrollbar-width:thin;scrollbar-color:var(--plum-2) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--plum-2),var(--pink));border-radius:10px;border:2px solid transparent;background-clip:padding-box}
