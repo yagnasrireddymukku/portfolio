@@ -200,14 +200,16 @@ if (rail && typeof WORKS !== 'undefined') {
   const escH = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   rail.innerHTML = WORKS.map((w, i) => `
     <a class="work" href="works.html?play=${i}" aria-label="Watch ${escH(w.title)}">
-      <div class="thumb">
-        <div class="ph"><div><b>${escH(w.title)}</b><small>Video coming soon</small></div></div>
+      <div class="thumb" data-no="${String(i + 1).padStart(2, '0')}">
+        <div class="ph"><small>Video coming soon</small></div>
         <video muted loop playsinline preload="metadata" ${w.poster ? `poster="${escH(w.poster)}"` : ''} src="${escH(w.video)}#t=0.5"></video>
+        <div class="cap"><b aria-hidden="true">${splitLetters(w.title)}</b><p>${escH(w.desc || '')}</p></div>
         <span class="badge">${escH(w.cat)}</span>
-        <span class="play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><em>Watch</em></span>
       </div>
-      <div class="work-body"><h3>${escH(w.title)}</h3><p>${escH(w.desc || '')}</p></div>
+      <div class="work-body"><h3>${escH(w.title)}</h3><p>${escH(w.desc || '')}</p><span class="go">Watch walkthrough →</span></div>
     </a>`).join('') + '<a class="rail-more" href="works.html"><span>View all works<br>→</span></a>';
+  bindWorkFx(rail);
   rail.querySelectorAll('.work').forEach(c => {
     const v = c.querySelector('video'), ph = c.querySelector('.ph');
     v.addEventListener('loadeddata', () => ph.style.display = 'none');
@@ -339,5 +341,25 @@ if (!reduced) {
     walk(h);
     h.querySelectorAll('.grad:not(.w)').forEach(g => g.classList.remove('grad'));
     h.classList.add('split'); sio.observe(h);
+  });
+}
+
+// ---------- work-card effects (shared by the home carousel and the Works page) ----------
+// letters fly in one by one on hover (words stay unbroken so long names wrap nicely)
+function splitLetters(text) {
+  let n = 0;
+  const esc = c => c.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
+  return String(text).split(' ').map(w => `<span class="wd">${[...w].map(c => `<i style="--i:${n++}">${esc(c)}</i>`).join('')}</span>`).join(' ');
+}
+// 3D tilt + moving light on hover (mouse only)
+function bindWorkFx(root) {
+  if (!matchMedia('(hover:hover) and (pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.querySelectorAll('.work').forEach(c => {
+    c.addEventListener('mousemove', e => {
+      const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      c.style.transform = `perspective(900px) rotateY(${(x - .5) * 10}deg) rotateX(${(.5 - y) * 10}deg) translateY(-8px)`;
+      c.style.setProperty('--mx', x * 100 + '%'); c.style.setProperty('--my', y * 100 + '%');
+    });
+    c.addEventListener('mouseleave', () => { c.style.transform = ''; });
   });
 }

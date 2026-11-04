@@ -9,19 +9,22 @@ function render(cat) {
   const list = WORKS.filter(w => cat === 'All' || w.cat === cat);
   grid.innerHTML = list.map((w, i) => `
     <article class="work${cat === 'All' && i === 0 ? ' feature' : ''}" tabindex="0" data-i="${WORKS.indexOf(w)}" style="animation-delay:${i * 60}ms" aria-label="Play ${esc(w.title)}">
-      <div class="thumb">
-        <div class="ph"><div><b>${esc(w.title)}</b><small>Video coming soon</small></div></div>
+      <div class="thumb" data-no="${String(WORKS.indexOf(w) + 1).padStart(2, '0')}">
+        <div class="ph"><small>Video coming soon</small></div>
         <video muted loop playsinline preload="metadata" ${w.poster ? `poster="${esc(w.poster)}"` : ''} src="${esc(w.video)}#t=0.5"></video>
+        <div class="cap"><b aria-hidden="true">${splitLetters(w.title)}</b><p>${esc(w.desc || '')}</p>${w.url ? `<a class="visit" href="${esc(w.url)}" target="_blank" rel="noopener">Visit site ↗</a>` : ''}</div>
         <span class="badge">${esc(w.cat)}</span>
-        <span class="play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><em>Watch</em></span>
       </div>
       <div class="work-body">
         <h3>${esc(w.title)}</h3>
         <p>${esc(w.desc || '')}</p>
+        <span class="go">Watch walkthrough →</span>
         ${w.url ? `<a class="visit" href="${esc(w.url)}" target="_blank" rel="noopener">Visit site ↗</a>` : ''}
       </div>
     </article>`).join('') || '<p class="empty">No works in this category yet.</p>';
 
+  bindWorkFx(grid);
   // hide the placeholder once the real video can render; hover = silent preview
   grid.querySelectorAll('.thumb').forEach(t => {
     const v = t.querySelector('video'), ph = t.querySelector('.ph');
